@@ -28,17 +28,17 @@ class PluginContratosFacturacion extends CommonDBTM {
       return "Facturación";
    }   
    
-   static function canView() {
+   static function canView(): bool {
       return Session::haveRight(self::$rightname, READ);
    }
 
    //[INICIO] [CRI] JMZ18G CAMBIOS CORE - Heredar los permisos del objeto contract
-   static function canCreate() {      
+   static function canCreate(): bool {      
       return Session::haveRight(self::$rightname, UPDATE);
    }
    //[FINAL] [CRI] JMZ18G CAMBIOS CORE - Heredar los permisos del objeto contract
 
-   function canViewItem() {
+   function canViewItem(): bool {
 
       if (!Session::haveAccessToEntity($this->getEntityID())) {
          return false;
@@ -46,7 +46,7 @@ class PluginContratosFacturacion extends CommonDBTM {
       return (Session::haveRight(self::$rightname, READ));
    }
 
-   function canCreateItem() {
+   function canCreateItem(): bool {
 
       if (!Session::haveAccessToEntity($this->getEntityID())) {
          return false;
@@ -54,7 +54,7 @@ class PluginContratosFacturacion extends CommonDBTM {
       return Session::haveRight(self::$rightname, UPDATE);
    }
  
-   function canUpdateItem() {
+   function canUpdateItem(): bool {
 
       if (!Session::haveAccessToEntity($this->getEntityID())) {
          return false;
@@ -62,7 +62,7 @@ class PluginContratosFacturacion extends CommonDBTM {
       return (Session::haveRight(self::$rightname, UPDATE));
    } 
 
-   function canDeleteItem() {
+   function canDeleteItem(): bool {
 
       if (!Session::haveAccessToEntity($this->getEntityID())) {
          return false;
@@ -70,7 +70,7 @@ class PluginContratosFacturacion extends CommonDBTM {
       return (Session::haveRight(self::$rightname, CREATE));
    } 
 
-   function canPurgeItem() {
+   function canPurgeItem(): bool {
 
       if (!Session::haveAccessToEntity($this->getEntityID())) {
          return false;
