@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /*
    ------------------------------------------------------------------------
    Autor: Grupo Inforges - Elena Martínez Ballesta
@@ -8,34 +9,29 @@
 */
 
 if (!defined('GLPI_ROOT')) {
-        die("Sorry. You can't access directly to this file");
+   die("Sorry. You can't access directly to this file");
 }
 
-// Class of the defined type
 class PluginContratosContrato extends CommonDBTM {
-	
-   public $dohistory=true;
+   public bool $dohistory = true;
 
-   //[INICIO] [CRI] JMZ18G CAMBIOS CORE - Heredar los permisos del objeto contract
-   //static $rightname = "plugin_contratos";
-   static $rightname = "contract";
-   //[INICIO] [CRI] JMZ18G CAMBIOS CORE  - Heredar los permisos del objeto contract 
-   
-   static protected $notable=true;   
-   
-   // Should return the localized name of the type
-   static function getTypeName($nb = 0) {
-       return "Contratos - Extra";
-   }
-   
-   static function canCreate() {
-         return (Session::haveRight('plugin_contratos','UPDATE'));
-   }
-   
-   static function canView() {
- 	  return Session::haveRight('plugin_contratos', READ);
-   }   
+   // Heredar los permisos del objeto contract
+   public static string $rightname = 'contract';
+   protected static bool $notable = true;
 
-     
+   /**
+    * Should return the localized name of the type
+    */
+   public static function getTypeName(int $nb = 0): string {
+      return __('Contratos - Extra', 'contratos');
+   }
+
+   public static function canCreate(): bool {
+      return Session::haveRight('plugin_contratos', UPDATE);
+   }
+
+   public static function canView(): bool {
+      return Session::haveRight('plugin_contratos', READ);
+   }
 }
 ?>

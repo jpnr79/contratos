@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /*
    ------------------------------------------------------------------------
    Autor: Grupo Inforges - Elena Martínez Ballesta
@@ -12,29 +13,25 @@ if (!defined('GLPI_ROOT')) {
 }
 
 class PluginContratosProfile extends Profile {
+   public static string $rightname = 'profile';
 
-   static $rightname = "profile";
-
-   function getTabNameForItem(CommonGLPI $item, $withtemplate=0) {
-
-      if ($item->getType()=='Profile') {
-            return PluginContratosContrato::getTypeName(2);
+   public function getTabNameForItem(CommonGLPI $item, int $withtemplate = 0): string {
+      if ($item->getType() === 'Profile') {
+         return PluginContratosContrato::getTypeName(2);
       }
       return '';
    }
 
-
-   static function displayTabContentForItem(CommonGLPI $item, $tabnum=1, $withtemplate=0) {
+   public static function displayTabContentForItem(CommonGLPI $item, int $tabnum = 1, int $withtemplate = 0): bool {
       global $CFG_GLPI;
-
-      if ($item->getType()=='Profile') {
+      if ($item->getType() === 'Profile') {
          $ID = $item->getID();
          $prof = new self();
-
-         self::addDefaultProfileInfos($ID, 
-									array('plugin_contratos'               => 0,
-										  'plugin_contratos_facturacion'     => 0,
-										  'plugin_contratos_licitacion'   => 0));
+         self::addDefaultProfileInfos($ID, [
+            'plugin_contratos' => 0,
+            'plugin_contratos_facturacion' => 0,
+            'plugin_contratos_licitacion' => 0
+         ]);
          $prof->showForm($ID);
       }
       return true;

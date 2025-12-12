@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /*
    ------------------------------------------------------------------------
    Autor: Grupo Inforges - Elena Martínez Ballesta
@@ -6,61 +7,51 @@
    Plugin Contratos
    ------------------------------------------------------------------------
 */
- 
 
 if (!defined('GLPI_ROOT')) {
    die("Sorry. You can't access directly to this file");
 }
 
-class PluginContratosFacturacion extends CommonDBTM { 
-   
-   public $dohistory=true;
-   
-   public $table = 'glpi_plugin_contratos_facturacions';
-   public $type  = 'PluginContratosFacturacion';
-   
-   //[INICIO] [CRI] JMZ18G CAMBIOS CORE - Heredar los permisos del objeto contract
-   //static $rightname = "plugin_contratos_facturacion";
-   static $rightname = "contract";
-   //[INICIO] [CRI] JMZ18G CAMBIOS CORE  - Heredar los permisos del objeto contract    
-   
-   static function getTypeName($nb = 0) {
-      return "Facturación";
-   }   
-   
-   static function canView(): bool {
+class PluginContratosFacturacion extends CommonDBTM {
+   public bool $dohistory = true;
+   public string $table = 'glpi_plugin_contratos_facturacions';
+   public string $type  = 'PluginContratosFacturacion';
+
+   // Heredar los permisos del objeto contract
+   public static string $rightname = 'contract';
+
+   public static function getTypeName(int $nb = 0): string {
+      return __('Facturación', 'contratos');
+   }
+
+   public static function canView(): bool {
       return Session::haveRight(self::$rightname, READ);
    }
 
-   //[INICIO] [CRI] JMZ18G CAMBIOS CORE - Heredar los permisos del objeto contract
-   static function canCreate(): bool {      
+   public static function canCreate(): bool {
       return Session::haveRight(self::$rightname, UPDATE);
    }
-   //[FINAL] [CRI] JMZ18G CAMBIOS CORE - Heredar los permisos del objeto contract
 
-   function canViewItem(): bool {
-
+   public function canViewItem(): bool {
       if (!Session::haveAccessToEntity($this->getEntityID())) {
          return false;
       }
-      return (Session::haveRight(self::$rightname, READ));
+      return Session::haveRight(self::$rightname, READ);
    }
 
-   function canCreateItem(): bool {
-
+   public function canCreateItem(): bool {
       if (!Session::haveAccessToEntity($this->getEntityID())) {
          return false;
       }
       return Session::haveRight(self::$rightname, UPDATE);
    }
- 
-   function canUpdateItem(): bool {
 
+   public function canUpdateItem(): bool {
       if (!Session::haveAccessToEntity($this->getEntityID())) {
          return false;
       }
-      return (Session::haveRight(self::$rightname, UPDATE));
-   } 
+      return Session::haveRight(self::$rightname, UPDATE);
+   }
 
    function canDeleteItem(): bool {
 
