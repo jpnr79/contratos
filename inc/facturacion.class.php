@@ -20,7 +20,7 @@ class PluginContratosFacturacion extends CommonDBTM {
    // Heredar los permisos del objeto contract
    public static string $rightname = 'contract';
 
-   public static function getTypeName(int $nb = 0): string {
+   public static function getTypeName($nb = 0) {
       return __('Facturación', 'contratos');
    }
 
@@ -233,7 +233,7 @@ class PluginContratosFacturacion extends CommonDBTM {
       return $tab;
    }   
    
-   static function showForContract(Contract $contract, $withtemplate='') {
+   static function showForContract(\CommonGLPI $contract, $withtemplate='') {
       global $DB, $CFG_GLPI;
 
       $ID = $contract->fields['id'];

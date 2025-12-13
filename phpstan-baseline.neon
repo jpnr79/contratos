@@ -1,0 +1,73 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^File begins with UTF\-8 BOM character\. This may cause problems when running the code in the web browser\.$#'
+			identifier: whitespace.bom
+			count: 1
+			path: front/profile.form.php
+
+		-
+			message: '#^Call to an undefined static method Html\:\:convDate\(\)\.$#'
+			identifier: staticMethod.notFound
+			count: 2
+			path: inc/facturacion.class.php
+
+		-
+			message: '#^Call to an undefined static method Html\:\:formatNumber\(\)\.$#'
+			identifier: staticMethod.notFound
+			count: 9
+			path: inc/facturacion.class.php
+
+		-
+			message: '#^Call to an undefined static method Html\:\:showDateField\(\)\.$#'
+			identifier: staticMethod.notFound
+			count: 6
+			path: inc/facturacion.class.php
+
+		-
+			message: '#^Call to static method dropdown\(\) on an unknown class Contractcost\.$#'
+			identifier: class.notFound
+			count: 1
+			path: inc/facturacion.class.php
+
+		-
+			message: '#^Call to an undefined static method Html\:\:convDate\(\)\.$#'
+			identifier: staticMethod.notFound
+			count: 2
+			path: inc/licitacion.class.php
+
+		-
+			message: '#^Call to an undefined static method Html\:\:formatNumber\(\)\.$#'
+			identifier: staticMethod.notFound
+			count: 8
+			path: inc/licitacion.class.php
+
+		-
+			message: '#^Call to an undefined static method Html\:\:printPagerForm\(\)\.$#'
+			identifier: staticMethod.notFound
+			count: 1
+			path: inc/licitacion.class.php
+
+		-
+			message: '#^Call to an undefined static method Html\:\:showDateField\(\)\.$#'
+			identifier: staticMethod.notFound
+			count: 2
+			path: inc/licitacion.class.php
+
+		-
+			message: '#^Call to static method canView\(\) on an unknown class Budget\.$#'
+			identifier: class.notFound
+			count: 1
+			path: inc/licitacion.class.php
+
+		-
+			message: '#^Call to static method dropdown\(\) on an unknown class Budget\.$#'
+			identifier: class.notFound
+			count: 1
+			path: inc/licitacion.class.php
+
+		-
+			message: '#^Method PluginContratosProfile\:\:showForm\(\) should return nothing but return statement is missing\.$#'
+			identifier: return.missing
+			count: 1
+			path: inc/profile.class.php

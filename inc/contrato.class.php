@@ -22,7 +22,7 @@ class PluginContratosContrato extends CommonDBTM {
    /**
     * Should return the localized name of the type
     */
-   public static function getTypeName(int $nb = 0): string {
+   public static function getTypeName($nb = 0) {
       return __('Contratos - Extra', 'contratos');
    }
 

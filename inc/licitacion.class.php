@@ -19,7 +19,7 @@ class PluginContratosLicitacion extends CommonDBTM {
    // Heredar los permisos del objeto contract
    public static string $rightname = 'contract';
 
-   public static function getTypeName(int $nb = 0): string {
+   public static function getTypeName($nb = 0) {
       return __('Importes licitación', 'contratos');
    }
 
@@ -212,7 +212,7 @@ class PluginContratosLicitacion extends CommonDBTM {
       return $tab;
    }   
    
-   static function showForContract(Contract $contract, $withtemplate='') {
+   static function showForContract(\CommonGLPI $contract, $withtemplate='') {
       global $DB, $CFG_GLPI;
 
       $ID = $contract->fields['id'];
@@ -386,13 +386,13 @@ class PluginContratosLicitacion extends CommonDBTM {
     *
     * @return void
    **/
-  static function showValuesByEntity($item) {
+   static function showValuesByEntity($item) {
    global $DB;
 
    $budgets_id = $item->fields['id'];
 
    if (!$item->can($budgets_id, READ)) {
-      return false;
+      return;
    }
 
    $licitacion = new PluginContratosLicitacion();
@@ -471,13 +471,13 @@ class PluginContratosLicitacion extends CommonDBTM {
     *
     * @return void
    **/
-  static function showItems($item) {
+   static function showItems($item) {
    global $DB;
 
    $budgets_id = $item->fields['id'];
 
    if (!$item->can($budgets_id, READ)) {
-      return false;
+      return;
    }
 
    $licitacion = new PluginContratosLicitacion();
