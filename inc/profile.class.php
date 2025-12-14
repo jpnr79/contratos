@@ -13,16 +13,16 @@ if (!defined('GLPI_ROOT')) {
 }
 
 class PluginContratosProfile extends Profile {
-   public static string $rightname = 'profile';
+   public static $rightname = 'profile';
 
-   public function getTabNameForItem(CommonGLPI $item, int $withtemplate = 0): string {
+   public function getTabNameForItem(CommonGLPI $item, $withtemplate = 0) {
       if ($item->getType() === 'Profile') {
          return PluginContratosContrato::getTypeName(2);
       }
       return '';
    }
 
-   public static function displayTabContentForItem(CommonGLPI $item, int $tabnum = 1, int $withtemplate = 0): bool {
+   public static function displayTabContentForItem(CommonGLPI $item, $tabnum = 1, $withtemplate = 0) {
       global $CFG_GLPI;
       if ($item->getType() === 'Profile') {
          $ID = $item->getID();

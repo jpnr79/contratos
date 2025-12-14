@@ -28,7 +28,7 @@ function plugin_contratos_install() {
 
       //from 1.0.2' version
    if ($DB->tableExists("glpi_plugin_contratos_licitacions")
-      && !$DB->fieldExists("glpi_plugin_contratos_licitacions", "porject")) {
+      && !$DB->fieldExists("glpi_plugin_contratos_licitacions", "project")) {
          $DB->doQuery("
          ALTER TABLE `glpi_plugin_contratos_licitacions` ADD COLUMN `project` text COLLATE utf8mb4_unicode_ci AFTER `comment`;
          ");
